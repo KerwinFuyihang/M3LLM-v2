@@ -142,28 +142,6 @@ native LLaMA-Factory template.
 
 ## Data placement
 
-No data files are bundled. Before public release, distribute PMC-derived text and images only according to the accompanying licence manifest. Restricted MIMIC-CXR and YNHH data must remain outside this repository. Third-party provenance is summarized in `THIRD_PARTY.md`.
+No data files are bundled. Before public release, distribute PMC-derived text and images only according to the accompanying licence manifest. Restricted MIMIC-CXR and YNHH data remain outside this repository. Third-party provenance is summarized in `THIRD_PARTY.md`.
 
-## Entry-point reference
 
-| Entry point | Purpose |
-|---|---|
-| `Training/SFT/configs/stage1_mi_sft.yaml` | Stage I multi-image full-parameter SFT |
-| `Training/GRPO/scripts/prepare_policy_data.py` | Convert local Stage II records to the EasyR1 schema |
-| `Training/GRPO/train_grpo.sh` | Stage II selection-aware GRPO |
-| `Training/SFT/configs/stage3_full_sft.yaml` | Stage III full-mixture supervised consolidation |
-| `Evaluation/PMC-MI-Bench/evaluate_all.py` | PMC-MI-Bench inference and reference-based metrics |
-| `Evaluation/MedEvalKit/eval.sh` | OmniMedVQA and MMMU-Med evaluation |
-| `Evaluation/MS-CXR-T-derived-validation/scripts/build_benchmark.py` | Construct the patient-level 1:1 derived benchmark |
-| `Evaluation/MS-CXR-T-derived-validation/scripts/prepare_llamafactory_sft.py` | Convert the MS-CXR-T-derived training split for LLaMA-Factory |
-| `Evaluation/MS-CXR-T-derived-validation/scripts/run_zero_shot.sh` | Direct generative-model evaluation without target-task adaptation |
-| `Evaluation/MS-CXR-T-derived-validation/scripts/train_qwen3vl_lora.sh` | Matched LoRA adaptation for the two derived tasks |
-| `Evaluation/MS-CXR-T-derived-validation/scripts/evaluate_predictions.py` | Accuracy, balanced accuracy, macro-F1 and class-level counts |
-| `Evaluation/MS-CXR-T-derived-validation/scripts/train_*` / `eval_*` | Specialized MoCo-CXR, CXR Foundation and BioViL-T baselines |
-| `Evaluation/derm_validation/scripts/prepare_llamafactory_sft.py` | Convert an authorized YNHH differential-diagnosis split |
-| `Evaluation/derm_validation/scripts/train_derm_lora.sh` | Matched LoRA adaptation for the dermatology task |
-| `Evaluation/derm_validation/scripts/run_zero_shot.sh` | Direct dermatology evaluation without target-task adaptation |
-| `Evaluation/derm_validation/scripts/evaluate_predictions.py` | Dermatology accuracy, balanced accuracy and macro-F1 |
-
-See `AUDIT_REPORT.md` for the manuscript-alignment checks and remaining
-release-time items.
