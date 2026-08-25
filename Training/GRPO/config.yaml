@@ -1,0 +1,86 @@
+data:
+  train_files: null
+  val_files: null
+  prompt_key: prompt
+  answer_key: answer
+  image_key: images
+  image_dir: null
+  max_prompt_length: 10000
+  max_response_length: 2048
+  rollout_batch_size: 4
+  val_batch_size: 4
+  format_prompt: null
+  shuffle: true
+  seed: 1
+  min_pixels: 262144
+  max_pixels: 4194304
+  filter_overlong_prompts: true
+
+algorithm:
+  adv_estimator: grpo
+  disable_kl: false
+  use_kl_loss: true
+  kl_penalty: low_var_kl
+  kl_coef: 1.0e-2
+  online_filtering: false
+
+worker:
+  actor:
+    global_batch_size: 4
+    micro_batch_size_per_device_for_update: 1
+    micro_batch_size_per_device_for_experience: 2
+    max_grad_norm: 1.0
+    clip_ratio_low: 0.2
+    clip_ratio_high: 0.3
+    clip_ratio_dual: 3.0
+    ppo_epochs: 1
+    padding_free: true
+    dynamic_batching: true
+    model:
+      model_path: null
+      enable_gradient_checkpointing: true
+      trust_remote_code: true
+      freeze_vision_tower: false
+      lora:
+        rank: 0
+    optim:
+      lr: 1.0e-6
+      weight_decay: 1.0e-2
+      strategy: adamw
+      lr_warmup_ratio: 0.0
+    fsdp:
+      enable_full_shard: true
+      enable_cpu_offload: false
+      enable_rank0_init: true
+
+  rollout:
+    n: 16
+    temperature: 1.0
+    top_p: 1.0
+    limit_images: 4
+    gpu_memory_utilization: 0.45
+    enable_chunked_prefill: true
+    tensor_parallel_size: 4
+    max_num_batched_tokens: 15000
+
+  ref:
+    fsdp:
+      enable_full_shard: true
+      enable_cpu_offload: true
+
+  reward:
+    reward_function: null
+
+trainer:
+  total_epochs: 15
+  project_name: m3llm
+  experiment_name: qwen3_vl_8b_policy_refinement
+  logger: ["file"]
+  nnodes: 1
+  n_gpus_per_node: 4
+  val_freq: 5
+  val_before_train: true
+  save_freq: 5
+  save_limit: 3
+  save_checkpoint_path: null
+  find_last_checkpoint: true

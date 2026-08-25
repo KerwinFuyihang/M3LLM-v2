@@ -1,0 +1,15 @@
+numpy
+pillow
+tqdm
+torch
+scikit-learn
+
+# MedEvalKit VLM evaluation (optional)
+# Install separately from ../MedEvalKit/requirements.txt
+
+# BioViL-T fine-tuning (optional)
+# hi-ml-multimodal
+
+# CXR Foundation embedding extraction (optional, separate TF env)
+# tensorflow-cpu>=2.17,<2.18
+# huggingface_hub

@@ -1,0 +1,12 @@
+### model
+model_name_or_path: Qwen/Qwen3-VL-8B-Instruct
+adapter_name_or_path: @LLAMAFACTORY_SAVES@/derm_clinical_qwen3vl_binary/lora/sft
+template: qwen3_vl_nothink
+finetuning_type: lora
+trust_remote_code: true
+
+### export
+export_dir: @LLAMAFACTORY_SAVES@/derm_clinical_qwen3vl_binary/lora/sft_merged
+export_size: 2
+export_device: cpu
+export_legacy_format: false

@@ -1,0 +1,24 @@
+{
+  "mscxr_target_finding_train": {
+    "file_name": "mscxr_target_finding_train.jsonl",
+    "formatting": "sharegpt",
+    "columns": {"messages": "messages", "images": "images"},
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant"
+    }
+  },
+  "mscxr_progression_train": {
+    "file_name": "mscxr_progression_train.jsonl",
+    "formatting": "sharegpt",
+    "columns": {"messages": "messages", "images": "images"},
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+### model
+model_name_or_path: Qwen/Qwen3-VL-8B-Instruct
+image_min_pixels: 1024
+image_max_pixels: 589824
+video_max_pixels: 16384
+trust_remote_code: true
+
+### method
+stage: sft
+do_train: true
+finetuning_type: lora
+lora_rank: 16
+lora_alpha: 32
+lora_dropout: 0.05
+lora_target: all
+freeze_vision_tower: true
+freeze_multi_modal_projector: true
+
+### dataset
+dataset: derm_binary_train
+dataset_dir: @BENCHMARK_ROOT@/llamafactory_data
+media_dir: @IMAGE_ROOT@
+template: qwen3_vl_nothink
+cutoff_len: 2048
+max_samples: null
+preprocessing_num_workers: 8
+dataloader_num_workers: 2
+
+### output
+output_dir: @LLAMAFACTORY_SAVES@/derm_clinical_qwen3vl_binary/lora/sft
+logging_steps: 10
+save_strategy: "no"
+plot_loss: true
+overwrite_output_dir: true
+save_only_model: false
+report_to: none
+
+### train
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 8
+learning_rate: 1.0e-4
+weight_decay: 0.0
+optim: adamw_torch
+num_train_epochs: 3.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.05
+bf16: true
+seed: 42
+max_grad_norm: 1.0
+ddp_timeout: 180000000
+resume_from_checkpoint: null
+
+### eval
+eval_strategy: "no"

@@ -1,0 +1,15 @@
+data/
+images/
+results/
+saves/
+checkpoints/
+cache/
+*.jsonl
+*.csv
+*.parquet
+*.pth
+*.pt
+*.bin
+__pycache__/
+*.py[cod]
+.DS_Store

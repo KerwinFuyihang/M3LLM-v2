@@ -1,0 +1,11 @@
+numpy
+pillow
+tqdm
+torch
+scikit-learn
+
+# MedEvalKit VLM evaluation (optional)
+# Install separately from ../MedEvalKit/requirements.txt
+
+# LlamaFactory LoRA fine-tuning (optional)
+# Install LlamaFactory and model-specific dependencies separately.

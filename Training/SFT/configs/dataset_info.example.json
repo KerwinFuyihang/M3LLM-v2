@@ -1,0 +1,12 @@
+{
+  "pmc_mi_stage1_train": {
+    "file_name": "stage1_train.jsonl",
+    "formatting": "sharegpt",
+    "columns": {"messages": "messages", "images": "images"}
+  },
+  "pmc_mi_stage3_train": {
+    "file_name": "stage3_train.jsonl",
+    "formatting": "sharegpt",
+    "columns": {"messages": "messages", "images": "images"}
+  }
+}

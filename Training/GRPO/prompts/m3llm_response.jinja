@@ -1,0 +1,11 @@
+{{ content | trim }}
+
+You must answer with the exact structure below:
+<Thought>brief reasoning based on the provided images</Thought>
+<Selection>comma-separated relevant figures such as Fig-1, Fig-3</Selection>
+<Answer>final medical answer</Answer>
+
+Rules:
+- Use only figure IDs that exist in the prompt context.
+- Keep <Selection> concise and include only selected figures.
+- Always include all three tags in the specified order.

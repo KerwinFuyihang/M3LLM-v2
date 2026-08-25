@@ -1,0 +1,12 @@
+### model
+model_name_or_path: google/medgemma-1.5-4b-it
+adapter_name_or_path: @LLAMAFACTORY_SAVES@/derm_clinical_medgemma_binary/lora/sft
+template: gemma3
+finetuning_type: lora
+trust_remote_code: true
+
+### export
+export_dir: @LLAMAFACTORY_SAVES@/derm_clinical_medgemma_binary/lora/sft_merged
+export_size: 2
+export_device: cpu
+export_legacy_format: false

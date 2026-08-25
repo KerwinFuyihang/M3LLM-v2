@@ -1,0 +1,11 @@
+### model
+model_name_or_path: Qwen/Qwen3-VL-8B-Instruct
+adapter_name_or_path: @LLAMAFACTORY_SAVES@/mscxr_qwen3vl_target/lora/sft
+template: qwen3_vl_nothink
+trust_remote_code: true
+
+### export
+export_dir: @LLAMAFACTORY_SAVES@/mscxr_qwen3vl_target/lora/sft_merged
+export_size: 5
+export_device: auto
+export_legacy_format: false
