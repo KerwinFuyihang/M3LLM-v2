@@ -12,6 +12,6 @@ Official code for training and evaluating M3LLM, a medical multi-image multimoda
 - `Evaluation/MS-CXR-T-derived-validation`: longitudinal chest-radiograph evaluation.
 - `Evaluation/derm_validation`: YNHH dermatology evaluation.
 
-Install the requirements in the relevant subdirectory and follow its scripts or configuration files. Data are released separately through [Yale-BIDS-Chen/M3LLM-data-release](https://huggingface.co/datasets/Yale-BIDS-Chen/M3LLM-data-release). Restricted clinical data are not included in this repository.
+Install the requirements in the relevant subdirectory and follow its scripts or configuration files. Data are released separately through [KerwinFu/M3LLM-data-v1.0.0](https://huggingface.co/datasets/KerwinFu/M3LLM-data-v1.0.0). Restricted clinical data are not included in this repository.
 
 Third-party components and data provenance are summarized in [`THIRD_PARTY.md`](THIRD_PARTY.md).
