@@ -52,6 +52,14 @@ def prompt_for_loaded_images(prompt: str) -> str:
     return re.sub(r"\n{3,}", "\n\n", text).strip()
 
 
+def select_image_paths(image_paths: list[str], max_image_num: int) -> list[str]:
+    """Retain up to max_image_num paths across the full ordered image sequence."""
+    if max_image_num <= 0 or len(image_paths) <= max_image_num:
+        return image_paths
+    indices = np.linspace(0, len(image_paths) - 1, max_image_num, dtype=int)
+    return [image_paths[index] for index in indices]
+
+
 def load_done_ids(results_path: Path) -> set[str]:
     if not results_path.exists():
         return set()
@@ -119,11 +127,7 @@ def run_single_sample(
     max_image_num: int,
 ) -> dict:
     full_image_paths = list(sample["messages"]["image_paths"])
-    if len(full_image_paths) > max_image_num:
-        raise ValueError(
-            f"Sample {sample.get('id', 'unknown')} exceeds the {max_image_num}-image eligibility limit."
-        )
-    image_paths = full_image_paths
+    image_paths = select_image_paths(full_image_paths, max_image_num)
     if not image_paths:
         raise ValueError(f"Sample {sample.get('id', 'unknown')} has no images to send.")
     original_prompt = sample["messages"]["prompt"]
@@ -276,7 +280,7 @@ def main() -> None:
             )
     print(f"Loaded {len(samples)} samples to run (max_image_num={args.max_image_num}).")
     if samples:
-        n_ineligible = sum(
+        n_subsampled = sum(
             1
             for s in samples
             if args.max_image_num > 0
@@ -284,7 +288,8 @@ def main() -> None:
         )
         print(
             f"Images: IMAGE_ROOT={args.image_root}; "
-            f"{n_ineligible}/{len(samples)} samples exceed the eligibility limit."
+            f"{n_subsampled}/{len(samples)} samples will be uniformly subsampled "
+            f"to {args.max_image_num} images."
         )
         first = samples[0]
         print(

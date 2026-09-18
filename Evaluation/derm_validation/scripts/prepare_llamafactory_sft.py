@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 from typing import Dict, Iterable, List
 
+import numpy as np
 from tqdm import tqdm
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -26,14 +27,12 @@ def write_jsonl(path: Path, rows: Iterable[Dict]) -> int:
     return count
 
 
-def validate_images(image_names: List[str], max_image_num: int) -> List[str]:
+def select_images(image_names: List[str], max_image_num: int) -> List[str]:
     if not image_names:
         raise ValueError("Each case must contain at least one image.")
-    if len(image_names) > max_image_num:
-        raise ValueError(
-            f"Case contains {len(image_names)} images; cases above the {max_image_num}-image "
-            "eligibility limit must be excluded before conversion."
-        )
+    if max_image_num > 0 and len(image_names) > max_image_num:
+        indices = np.linspace(0, len(image_names) - 1, max_image_num, dtype=int)
+        return [image_names[index] for index in indices]
     return image_names
 
 
@@ -51,7 +50,7 @@ def rebuild_prompt(prompt: str, num_images: int) -> str:
 def to_llamafactory_record(record: Dict, max_image_num: int) -> Dict:
     prompt = record["conversations"][0]["value"]
     answer = record["answer"]
-    image_names = validate_images(record["image"], max_image_num)
+    image_names = select_images(record["image"], max_image_num)
     prompt = rebuild_prompt(prompt, len(image_names))
 
     images = []
@@ -123,7 +122,10 @@ def main() -> None:
         "--max_image_num",
         type=int,
         default=8,
-        help="Maximum eligible number of images per case; cases are not subsampled.",
+        help=(
+            "Maximum number of images supplied to the model. Cases above the limit "
+            "are sampled approximately uniformly across their ordered image sequence."
+        ),
     )
     args = parser.parse_args()
 

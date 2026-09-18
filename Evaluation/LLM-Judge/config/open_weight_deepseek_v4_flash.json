@@ -1,0 +1,19 @@
+{
+  "model": "deepseek-ai/DeepSeek-V4-Flash",
+  "base_url": "http://localhost:8000/v1",
+  "api_key_env": "OPENAI_API_KEY",
+  "temperature": 0.0,
+  "top_p": 1.0,
+  "max_tokens": 1024,
+  "seed": 42,
+  "timeout_seconds": 120,
+  "max_retries": 5,
+  "response_format": {
+    "type": "json_object"
+  },
+  "extra_body": {
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  }
+}

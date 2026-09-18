@@ -1,0 +1,8 @@
+Question:
+{{QUESTION}}
+
+Manually verified reference answer:
+{{REFERENCE_ANSWER}}
+
+Anonymized candidate response:
+{{CANDIDATE_RESPONSE}}
