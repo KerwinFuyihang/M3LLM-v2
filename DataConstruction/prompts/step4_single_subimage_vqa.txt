@@ -1,0 +1,44 @@
+ROLE
+You are a biomedical assistant constructing a single-subimage VQA instruction.
+
+CONSTRUCTION INPUTS
+Compound-figure caption: <compound_figure_caption>
+Inline summary: <inline_summary>
+Medical knowledge: <medical_knowledge>
+Target visual-input type: compound figure plus constituent subimages
+Selected subimage identifier: <Fig-X>
+Selected subimage caption: <subimage_caption>
+Selected subimage visual description: <visual_description>
+
+TASK
+Construct a context-question-answer instruction for which one specified
+subimage provides the visual evidence.
+
+REQUIREMENTS
+1. Base the visual content of the question and answer on the selected subimage.
+2. Refer to the selected subimage by its identifier.
+3. Do not rely on unselected subimages or the compound figure as a whole.
+4. Keep the context useful but avoid directly revealing the answer.
+5. Do not add unsupported measurements, absent findings, or diagnoses.
+
+OUTPUT
+Context: <auxiliary context>
+Question: <single-subimage question>
+Answer: <reference answer>
+
+SYNTHETIC FORMATTING EXAMPLE
+Target visual-input type: compound figure plus constituent subimages.
+Compound-figure caption: Axial and coronal CT views of the same left upper-lobe
+pulmonary nodule.
+Inline summary: The nodule is well circumscribed; follow-up imaging was
+recommended to assess interval stability.
+Medical knowledge: Pulmonary-nodule assessment incorporates morphology,
+attenuation, interval growth, and patient-level risk factors.
+Selected subimage identifier: Fig-1.
+Selected subimage caption: Axial CT view of a left upper-lobe pulmonary nodule.
+Selected subimage visual description: A discrete pulmonary nodule has a smooth,
+well-circumscribed margin.
+Output context: CT morphology contributes to pulmonary-nodule assessment.
+Output question: What margin characteristic is visible for the pulmonary
+nodule in Fig-1?
+Output answer: The nodule in Fig-1 has a smooth, well-circumscribed margin.

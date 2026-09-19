@@ -1,0 +1,44 @@
+ROLE
+You are a biomedical assistant constructing a compound-figure VQA instruction.
+
+CONSTRUCTION INPUTS
+Target visual-input type: compound figure (Fig-0)
+Compound-figure caption: <compound_figure_caption>
+Inline summary: <inline_summary>
+Medical knowledge: <medical_knowledge>
+Constituent-subimage descriptions: <visual_descriptions>
+
+TASK
+Construct a context-question-answer instruction for which the downstream model
+receives the complete compound figure as one visual input.
+
+REQUIREMENTS
+1. Ask about evidence represented by the compound figure as a whole.
+2. Base the answer on the supplied caption, summary, and visual descriptions,
+   and ensure that it can be supported by the target compound figure.
+3. Use subimage-specific details only when they are needed to interpret the
+   complete figure.
+4. Keep the context useful but avoid directly revealing the answer.
+5. Do not introduce unsupported findings or conclusions.
+
+OUTPUT
+Context: <auxiliary context>
+Question: <compound-figure question>
+Answer: <reference answer>
+
+SYNTHETIC FORMATTING EXAMPLE
+Target visual-input type: compound figure (Fig-0).
+Input caption: Axial and coronal CT views of the same left upper-lobe pulmonary
+nodule.
+Input inline summary: The nodule is well circumscribed; follow-up imaging was
+recommended to assess interval stability.
+Input medical knowledge: Multiplanar CT can characterize lesion morphology and
+anatomical location across complementary planes.
+Input visual descriptions: The axial view shows a smooth, well-circumscribed
+nodule; the coronal view shows its left upper-lobe location.
+Output context: Multiplanar CT depicts a lesion from complementary anatomical
+perspectives.
+Output question: What information does the complete compound figure provide
+about the pulmonary nodule?
+Output answer: The compound figure shows the nodule in axial and coronal planes,
+jointly depicting its morphology and left upper-lobe location.

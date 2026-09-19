@@ -1,0 +1,39 @@
+ROLE
+You are a biomedical assistant constructing a text-only QA instruction. The
+downstream model will not receive an image.
+
+INPUT
+Compound-figure caption: <compound_figure_caption>
+Inline summary: <inline_summary>
+Medical knowledge: <medical_knowledge>
+
+TASK
+Construct a self-contained context-question-answer instruction from the supplied
+textual information.
+
+REQUIREMENTS
+1. The question and answer must be understandable without visual access.
+2. Do not refer to an image, figure, panel, subimage, or visual location.
+3. Use the caption and inline summary to identify the topic; use the medical-
+   knowledge note to formulate a related, self-contained question.
+4. Keep the context useful but avoid directly revealing the answer.
+5. Preserve uncertainty and avoid unsupported patient-specific conclusions.
+
+OUTPUT
+Context: <text-only auxiliary context>
+Question: <self-contained medical question>
+Answer: <reference answer>
+
+SYNTHETIC FORMATTING EXAMPLE
+Input caption: Axial and coronal chest CT views of a solitary pulmonary nodule.
+Input inline summary: Follow-up imaging was recommended to assess interval
+stability.
+Input medical knowledge: Pulmonary-nodule assessment integrates size,
+attenuation, morphology, interval growth, and patient-level risk factors.
+Output context: Pulmonary nodules are assessed using imaging characteristics,
+interval change, and patient-level risk factors.
+Output question: Which factors are commonly considered when estimating the
+risk of malignancy in a pulmonary nodule?
+Output answer: Assessment commonly considers nodule size, attenuation,
+morphology, interval growth, and patient-level factors such as age, smoking
+history, and prior malignancy.

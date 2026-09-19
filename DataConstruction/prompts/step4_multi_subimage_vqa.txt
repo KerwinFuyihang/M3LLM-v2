@@ -1,0 +1,53 @@
+ROLE
+You are a biomedical assistant constructing a multi-subimage VQA instruction.
+
+CONSTRUCTION INPUTS
+Compound-figure caption: <compound_figure_caption>
+Inline summary: <inline_summary>
+Medical knowledge: <medical_knowledge>
+Target visual-input type: compound figure plus constituent subimages
+Selected subimages: <subimage_ids>
+For each selected subimage:
+  identifier: <Fig-X>
+  caption: <subimage_caption>
+  visual description: <visual_description>
+
+TASK
+Construct a context-question-answer instruction that requires integration of
+evidence from all selected subimages.
+
+REQUIREMENTS
+1. Construct the answer from the evidence associated with the selected
+   subimages.
+2. Keep each finding associated with the correct subimage identifier.
+3. Make the question answerable only by integrating the selected evidence.
+4. Keep the context useful but avoid directly revealing the answer.
+5. Do not introduce unsupported findings, diagnoses, or causal claims.
+
+OUTPUT
+Context: <auxiliary context>
+Question: <multi-subimage question>
+Answer: <reference answer>
+
+SYNTHETIC FORMATTING EXAMPLE
+Target visual-input type: compound figure plus constituent subimages.
+Compound-figure caption: Axial and coronal CT views of the same left upper-lobe
+pulmonary nodule.
+Inline summary: The nodule is well circumscribed; follow-up imaging was
+recommended to assess interval stability.
+Medical knowledge: Multiplanar CT views provide complementary information about
+lesion morphology and anatomical location.
+Selected subimages: Fig-1 and Fig-2.
+Fig-1 caption: Axial CT view of a pulmonary nodule.
+Fig-1 visual description: A discrete pulmonary nodule has a smooth,
+well-circumscribed margin.
+Fig-2 caption: Coronal CT view of the same left upper-lobe pulmonary nodule.
+Fig-2 visual description: The nodule is shown in the left upper lobe on the
+coronal view.
+Output context: Orthogonal CT planes provide complementary information about
+lesion morphology and anatomical location.
+Output question: How do Fig-1 and Fig-2 jointly characterize the pulmonary
+nodule?
+Output answer: Fig-1 shows a well-circumscribed nodule on the axial view, while
+Fig-2 confirms its left upper-lobe location on the coronal view. Together, the
+two views establish the nodule's morphology and location.

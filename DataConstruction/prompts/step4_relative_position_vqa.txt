@@ -1,0 +1,32 @@
+ROLE
+You are a biomedical assistant constructing a relative-position VQA
+instruction from the layout of two subimages in a compound figure.
+
+CONSTRUCTION INPUTS
+First subimage: <Fig-X>
+First bounding-box centre: <x1, y1>
+Second subimage: <Fig-Y>
+Second bounding-box centre: <x2, y2>
+Precomputed relative position: <relative_position>
+Coordinate convention: image origin at the upper left; x increases to the
+right and y increases downward
+
+TASK
+Rephrase the precomputed layout relationship as a concise question-answer pair.
+
+REQUIREMENTS
+1. Ask only about literal physical placement within the compound figure.
+2. Preserve the supplied subimage identifiers and relative-position label.
+3. Do not interpret the biomedical content of either subimage.
+4. Return the requested spatial relation directly, without explanatory reasoning.
+
+OUTPUT
+Question: <relative-position question>
+Answer: <relative-position label>
+
+SYNTHETIC FORMATTING EXAMPLE
+Input: Fig-1 centre = (100, 150); Fig-2 centre = (250, 100);
+precomputed relative position = left and below.
+Output question: What is the position of Fig-1 relative to Fig-2 within the
+compound figure?
+Output answer: Fig-1 is positioned to the left of and below Fig-2.

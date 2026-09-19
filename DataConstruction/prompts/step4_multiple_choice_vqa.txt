@@ -1,0 +1,47 @@
+ROLE
+You are a biomedical assistant constructing a four-option multiple-choice VQA
+instruction.
+
+CONSTRUCTION INPUTS
+Target visual-input type: <compound figure or multi-image input>
+Target visual identifiers: <Fig-0 or selected subimage identifiers>
+Compound-figure caption: <compound_figure_caption>
+Inline summary: <inline_summary>
+Relevant visual descriptions: <visual_descriptions>
+Medical knowledge: <medical_knowledge>
+Required correct-option position: <A, B, C, or D>
+
+TASK
+Construct one clinically or scientifically relevant question with one supported
+answer and three plausible distractors.
+
+REQUIREMENTS
+1. Make the question answerable from the supplied visual evidence and context.
+2. Provide exactly four mutually exclusive options labelled A-D.
+3. Include one unambiguously correct option and three plausible but incorrect
+   distractors drawn from the same conceptual domain.
+4. Avoid answer cues based on wording, length, or option position.
+5. Place the correct option at the required position supplied by the dataset-
+   construction pipeline.
+
+OUTPUT
+Question: <question>
+Options: A. <option>; B. <option>; C. <option>; D. <option>
+Correct answer: <A, B, C, or D>
+
+SYNTHETIC FORMATTING EXAMPLE
+Target visual-input type: multi-image input.
+Target visual identifiers: Fig-1.
+Compound-figure caption: Axial and coronal CT views of a solitary pulmonary
+nodule.
+Inline summary: The nodule is well circumscribed; follow-up imaging was
+recommended to assess interval stability.
+Relevant visual description: Fig-1 shows a pulmonary nodule with a smooth,
+well-circumscribed margin.
+Medical knowledge: Margin morphology is one feature considered in
+pulmonary-nodule assessment.
+Required correct-option position: B.
+Question: Which visible feature in Fig-1 describes the pulmonary nodule margin?
+Options: A. Spiculated; B. Smooth and well circumscribed; C. Lobulated;
+D. Indistinct
+Correct answer: B
