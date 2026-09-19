@@ -22,7 +22,7 @@ from common import (
 
 
 TEXT_MODEL = "Qwen/Qwen2.5-32B-Instruct-AWQ"
-VISION_MODEL = "HuatuoGPT-Vision-34B"
+VISION_MODEL = "FreedomIntelligence/HuatuoGPT-Vision-34B"
 
 
 def caption(record: Mapping[str, Any]) -> str:

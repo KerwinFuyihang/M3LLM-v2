@@ -1,9 +1,10 @@
 # PMC-MI instruction construction
 
-This directory provides the five-step construction pipeline described in the
-manuscript.  The prompt files are the searchable specifications reproduced in
-the Supplementary Information.  Steps 1, 2, 4 and 5 use Qwen2.5-32B; Step 3
-uses HuatuoGPT-Vision-34B to describe each constituent subimage separately.
+This directory provides the maintained, manuscript-aligned implementation of
+the five-step construction workflow. The prompt files reproduce the current
+Supplementary specifications verbatim. Steps 1, 2, 4 and 5 use Qwen2.5-32B;
+Step 3 uses HuatuoGPT-Vision-34B to describe each constituent subimage
+separately.
 
 ## Contents
 
@@ -18,10 +19,10 @@ uses HuatuoGPT-Vision-34B to describe each constituent subimage separately.
   because these formats do not contain an auxiliary context.
 - `prompts/`: canonical prompt text for every step and Step 4 task format.
 
-The supplied historical scripts used local Hugging Face checkpoints and fixed
-cluster paths.  The release scripts retain a local-checkpoint route and also
-support an OpenAI-compatible endpoint, including a locally served vLLM model.
-No API key or filesystem path is embedded in the code.
+The release scripts implement the manuscript-described workflow without fixed
+cluster paths. They support local Hugging Face checkpoints and an
+OpenAI-compatible endpoint, including a locally served vLLM model. No API key
+or filesystem path is embedded in the code.
 
 ## Installation
 
@@ -33,8 +34,9 @@ pip install -r DataConstruction/requirements.txt
 
 The `huatuo-local` backend reuses the HuatuoGPT-Vision implementation under
 `Evaluation/MedEvalKit/models/HuatuoGPT` and requires the dependencies specified
-for that model. Alternatively, serve HuatuoGPT-Vision-34B through a compatible
-multimodal endpoint and select `--backend openai-compatible`.
+for that model. The default checkpoint is
+`FreedomIntelligence/HuatuoGPT-Vision-34B`. A compatible multimodal endpoint can
+instead be selected with `--backend openai-compatible`.
 
 ## Input and output
 
@@ -59,8 +61,10 @@ manifest. A JSON manifest maps image identifiers to paths; a CSV manifest uses
 `image` (or `filename`) and `path` columns.
 
 For the single-subimage, multi-subimage, and multiple-choice routes, an optional
-classification CSV can reproduce the historical medical-subimage selection
-(`filename` and `prob` columns; probability greater than 0.70 by default).
+classification CSV can apply the per-subimage confidence threshold used by the
+supplied multi-subimage construction script (`filename` and `prob` columns;
+probability greater than 0.70 by default). This task-level threshold is distinct
+from the 75% compound-figure eligibility criterion reported in the manuscript.
 Multi-subimage VQA then samples two or three eligible subimages with the
 specified seed. Relative-position VQA consumes bounding-box centres and a
 precomputed relation; the language model only verbalizes that relation.
@@ -77,14 +81,13 @@ python DataConstruction/scripts/step2_medical_knowledge.py \
   --input step1.jsonl --output step2.jsonl
 ```
 
-Run Step 3 through a local OpenAI-compatible multimodal server:
+Run Step 3 through the bundled HuatuoGPT-Vision adapter:
 
 ```bash
 python DataConstruction/scripts/step3_visual_description.py \
   --input step2.jsonl --output step3.jsonl \
-  --backend openai-compatible \
-  --base-url http://localhost:8000/v1 \
-  --model HuatuoGPT-Vision-34B \
+  --backend huatuo-local \
+  --model FreedomIntelligence/HuatuoGPT-Vision-34B \
   --image-manifest image_paths.csv
 ```
 
