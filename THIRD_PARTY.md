@@ -1,5 +1,7 @@
 # Third-party software
 
+The repository's [Apache-2.0 licence](LICENSE) applies to original M3LLM-v2 code and documentation; it does not replace the terms of the components listed below or other upstream code incorporated into model wrappers. See [licensing details](docs/licensing.md).
+
 This release contains model wrappers adapted from their upstream projects and a
 MedEvalKit snapshot used for public-benchmark evaluation. Those files remain
 subject to their upstream licences and attribution requirements.

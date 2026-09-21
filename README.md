@@ -35,7 +35,11 @@ M3LLM-v2/
 └── Evaluation/         # PMC-MI-Bench, public benchmarks, judge, and validations
 ```
 
-The Yale New Haven Health System clinical cohort is not distributed here. Its aggregate results and evaluation procedures are described in the manuscript. PMC-derived content, project-generated annotations, model checkpoints, and third-party software have distinct usage terms; consult the [dataset card](https://huggingface.co/datasets/KerwinFu/M3LLM-data-v1.0.0) and [third-party notes](THIRD_PARTY.md) before reuse.
+The Yale New Haven Health System clinical cohort is not distributed here. Its aggregate results and evaluation procedures are described in the manuscript.
+
+## Licence
+
+Original M3LLM-v2 code and documentation are released under the [Apache License 2.0](LICENSE), consistent with MedPMC. This code licence does not cover the dataset, PMC article content, model weights, or third-party software. See [licensing details](docs/licensing.md), the [dataset card](https://huggingface.co/datasets/KerwinFu/M3LLM-data-v1.0.0), and [third-party notes](THIRD_PARTY.md).
 
 ## Citation
 
